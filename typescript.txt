@@ -1,0 +1,144 @@
+Script started on Mon 16 Mar 2015 12:01:16 AM PDT
+]0;xzhan018@z3:~[xzhan018@z3 ~]$ cat run.bash
+#!/bin/bash
+echo -n "Enter folder containing the Locations file, e.g.,\"/user/xzhan018/project/input\", > "
+read folder_location
+echo "You entered: $folder_location"
+echo -n "Enter folder containing the Recordings files> "
+read folder_recordings
+echo "You entered: $folder_recordings"
+echo -n "Enter output folder> "
+read folder_output
+echo "You entered: $folder_output"
+hdfs dfs -rm -r $folder_output
+hadoop jar project_opti.jar com.mj.mapSideHashMapJoin.MapSideHashMapJoinMain $folder_recordings $folder_location/WeatherStationLocations.csv $folder_output
+hdfs dfs -ls $folder_output
+]0;xzhan018@z3:~[xzhan018@z3 ~]$ hdfs dfs -ls /user/xhz[K[Kzhan018/project/input
+Found 1 items
+-rw-r--r--   3 xzhan018 hadoop    6573169 2015-03-13 23:26 /user/xzhan018/project/input/WeatherStationLocations.csv
+]0;xzhan018@z3:~[xzhan018@z3 ~]$ hdfs dfs -ls/[K /user/xzhan018/project/map_input
+Found 4 items
+-rw-r--r--   3 xzhan018 hadoop  445996512 2015-03-13 23:28 /user/xzhan018/project/map_input/2006.txt
+-rw-r--r--   3 xzhan018 hadoop  453820822 2015-03-14 02:25 /user/xzhan018/project/map_input/2007.txt
+-rw-r--r--   3 xzhan018 hadoop  476209552 2015-03-14 03:31 /user/xzhan018/project/map_input/2008.txt
+-rw-r--r--   3 xzhan018 hadoop  253423688 2015-03-14 03:16 /user/xzhan018/project/map_input/2009.txt
+]0;xzhan018@z3:~[xzhan018@z3 ~]$ bash run.bash
+Enter folder containing the Locations file, e.g.,"/user/xzhan018/project/input", > /user/xzhan018/project/input
+You entered: /user/xzhan018/project/input
+Enter folder containing the Recordings files> /user/xzhan018/project/map_input
+You entered: /user/xzhan018/project/map_input
+Enter output folder> /user/xzhan018/project/output4
+You entered: /user/xzhan018/project/output4
+Deleted /user/xzhan018/project/output4
+15/03/16 00:02:39 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+15/03/16 00:02:40 INFO input.FileInputFormat: Total input paths to process : 4
+15/03/16 00:02:45 INFO mapred.JobClient: Running job: job_201501211553_2225
+15/03/16 00:02:46 INFO mapred.JobClient:  map 0% reduce 0%
+15/03/16 00:02:53 INFO mapred.JobClient:  map 40% reduce 0%
+15/03/16 00:02:57 INFO mapred.JobClient:  map 72% reduce 0%
+15/03/16 00:02:58 INFO mapred.JobClient:  map 80% reduce 0%
+15/03/16 00:03:00 INFO mapred.JobClient:  map 80% reduce 27%
+15/03/16 00:03:01 INFO mapred.JobClient:  map 100% reduce 27%
+15/03/16 00:03:04 INFO mapred.JobClient:  map 100% reduce 100%
+15/03/16 00:03:05 INFO mapred.JobClient: Job complete: job_201501211553_2225
+15/03/16 00:03:05 INFO mapred.JobClient: Counters: 33
+15/03/16 00:03:05 INFO mapred.JobClient:   File System Counters
+15/03/16 00:03:05 INFO mapred.JobClient:     FILE: Number of bytes read=336078
+15/03/16 00:03:05 INFO mapred.JobClient:     FILE: Number of bytes written=5153687
+15/03/16 00:03:05 INFO mapred.JobClient:     FILE: Number of read operations=0
+15/03/16 00:03:05 INFO mapred.JobClient:     FILE: Number of large read operations=0
+15/03/16 00:03:05 INFO mapred.JobClient:     FILE: Number of write operations=0
+15/03/16 00:03:05 INFO mapred.JobClient:     HDFS: Number of bytes read=1629539615
+15/03/16 00:03:05 INFO mapred.JobClient:     HDFS: Number of bytes written=2755
+15/03/16 00:03:05 INFO mapred.JobClient:     HDFS: Number of read operations=51
+15/03/16 00:03:05 INFO mapred.JobClient:     HDFS: Number of large read operations=0
+15/03/16 00:03:05 INFO mapred.JobClient:     HDFS: Number of write operations=1
+15/03/16 00:03:05 INFO mapred.JobClient:   Job Counters 
+15/03/16 00:03:05 INFO mapred.JobClient:     Launched map tasks=25
+15/03/16 00:03:05 INFO mapred.JobClient:     Launched reduce tasks=1
+15/03/16 00:03:05 INFO mapred.JobClient:     Data-local map tasks=24
+15/03/16 00:03:05 INFO mapred.JobClient:     Rack-local map tasks=1
+15/03/16 00:03:05 INFO mapred.JobClient:     Total time spent by all maps in occupied slots (ms)=103804
+15/03/16 00:03:05 INFO mapred.JobClient:     Total time spent by all reduces in occupied slots (ms)=11252
+15/03/16 00:03:05 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+15/03/16 00:03:05 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+15/03/16 00:03:05 INFO mapred.JobClient:   Map-Reduce Framework
+15/03/16 00:03:05 INFO mapred.JobClient:     Map input records=11722666
+15/03/16 00:03:05 INFO mapred.JobClient:     Map output records=3873184
+15/03/16 00:03:05 INFO mapred.JobClient:     Map output bytes=96829600
+15/03/16 00:03:05 INFO mapred.JobClient:     Input split bytes=3025
+15/03/16 00:03:05 INFO mapred.JobClient:     Combine input records=3873184
+15/03/16 00:03:05 INFO mapred.JobClient:     Combine output records=7073
+15/03/16 00:03:05 INFO mapred.JobClient:     Reduce input groups=660
+15/03/16 00:03:05 INFO mapred.JobClient:     Reduce shuffle bytes=191121
+15/03/16 00:03:05 INFO mapred.JobClient:     Reduce input records=7073
+15/03/16 00:03:05 INFO mapred.JobClient:     Reduce output records=55
+15/03/16 00:03:05 INFO mapred.JobClient:     Spilled Records=19517
+15/03/16 00:03:05 INFO mapred.JobClient:     CPU time spent (ms)=95430
+15/03/16 00:03:05 INFO mapred.JobClient:     Physical memory (bytes) snapshot=6958522368
+15/03/16 00:03:05 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=21238796288
+15/03/16 00:03:05 INFO mapred.JobClient:     Total committed heap usage (bytes)=5300486144
+Found 3 items
+-rw-r--r--   3 xzhan018 hadoop          0 2015-03-15 23:11 /user/xzhan018/project/output4/_SUCCESS
+drwxr-xr-x   - xzhan018 hadoop          0 2015-03-15 23:11 /user/xzhan018/project/output4/_logs
+-rw-r--r--   3 xzhan018 hadoop       2755 2015-03-15 23:11 /user/xzhan018/project/output4/part-r-00000
+]0;xzhan018@z3:~[xzhan018@z3 ~]$ hdfs dfs -cat /user/xzhan018/project/output4/part-r-00000
+5.721	VI,July,83.275,0.073,February,77.554,0.045
+6.48	PR,August,82.987,0.197,January,76.507,0.074
+7.773	HI,August,77.895,0.030,February,70.122,0.092
+21.372	FL,August,82.653,0.131,January,61.281,0.039
+25.614	CA,July,73.668,0.002,December,48.054,0.051
+29.95	LA,August,82.630,0.075,January,52.681,0.073
+30.668	OR,July,67.382,0.007,December,36.713,0.116
+31.005	WA,July,66.592,0.010,December,35.587,0.115
+32.569	GA,August,80.874,0.077,January,48.305,0.051
+33.419	TX,August,82.869,0.051,January,49.450,0.027
+33.723	MS,August,81.874,0.127,January,48.151,0.101
+33.738	AL,August,81.287,0.114,January,47.549,0.093
+34.244	SC,August,81.092,0.110,January,46.848,0.055
+34.572	NC,August,78.991,0.052,January,44.419,0.031
+37.533	AO,July,66.783,0.083,February,29.250,0.045
+37.807	VA,August,77.105,0.030,February,39.297,0.020
+39.493	NM,July,74.916,0.061,January,35.423,0.010
+39.917	TN,August,80.183,0.077,January,40.266,0.117
+39.937	WV,August,72.571,0.071,February,32.634,0.045
+40.11	DE,July,76.531,0.053,February,36.422,0.025
+40.27	AR,August,80.989,0.082,January,40.719,0.074
+40.413	MD,July,76.681,0.033,February,36.268,0.025
+40.789	AZ,July,85.822,0.050,December,45.033,0.027
+40.81	RI,July,73.089,0.048,February,32.279,0.032
+41.642	KY,August,78.091,0.066,February,36.448,0.081
+41.805	CT,July,73.123,0.087,February,31.318,0.061
+42.076	NJ,July,75.472,0.106,February,33.396,0.056
+42.192	MA,July,71.519,0.136,February,29.327,0.087
+42.243	OK,August,82.274,0.045,January,40.031,0.009
+43.482	PA,July,72.678,0.105,February,29.196,0.060
+44.379	PO,July,63.307,0.056,December,18.928,0.037
+44.399	NY,July,71.475,0.113,February,27.076,0.055
+45.08	MO,August,78.360,0.099,January,33.279,0.047
+45.131	OH,August,73.081,0.078,February,27.950,0.061
+45.132	ME,July,66.204,0.120,January,21.073,0.061
+45.211	DC,July,77.440,0.000,January,32.229,0.000
+45.544	NH,July,67.872,0.172,February,22.328,0.087
+45.608	CO,July,68.819,0.038,January,23.211,0.011
+45.791	IN,August,74.048,0.068,February,28.257,0.057
+46.144	IL,August,74.712,0.037,February,28.568,0.027
+46.64	KS,July,79.245,0.096,December,32.605,0.049
+46.667	MI,July,68.586,0.032,February,21.919,0.018
+46.769	AK,July,54.508,0.047,January,7.739,0.042
+47.171	VT,July,68.292,0.174,January,21.121,0.069
+48.17	ID,July,72.385,0.011,January,24.216,0.043
+49.39	NV,July,83.586,0.018,December,34.197,0.020
+50.637	WY,July,71.544,0.037,December,20.907,0.015
+50.817	NE,July,76.360,0.043,December,25.544,0.018
+51.014	MT,July,73.105,0.024,December,22.091,0.016
+51.479	IA,July,74.532,0.041,January,23.053,0.006
+51.653	WI,July,70.078,0.036,February,18.425,0.011
+54.255	UT,July,79.696,0.015,January,25.441,0.032
+55.157	SD,July,75.436,0.051,February,20.278,0.015
+57.394	MN,July,71.107,0.015,February,13.712,0.003
+60.579	ND,July,72.393,0.058,February,11.814,0.012
+]0;xzhan018@z3:~[xzhan018@z3 ~]$ exit
+exit
+
+Script done on Mon 16 Mar 2015 12:03:30 AM PDT
